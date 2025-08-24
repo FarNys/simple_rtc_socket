@@ -37,11 +37,6 @@ io.on("connection", (socket) => {
   socket.join("all-users");
   socket.to("all-users").emit("new-user", usersList);
 
-  socket.on("message", (data) => {
-    console.log("Received message:", data);
-    io.emit("message", data); // broadcast to everyone
-  });
-
   socket.on("disconnect", () => {
     socket.leave("all-users");
     const onlineUsers = usersList.filter((user) => user.socketId !== socket.id);

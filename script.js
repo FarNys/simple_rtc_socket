@@ -1,12 +1,12 @@
 let mySocketId = "";
 let myStream = null;
-const socket = io("http://localhost:4000");
-
 let peer = null;
+
+const socket = io("http://localhost:4000");
 
 // Listen for connection
 socket.on("connect", () => {
-  console.log("Connected to server with ID:", socket.id);
+  console.log("Connected to server ,your ID:", socket.id);
   peer = new Peer(socket.id);
   mySocketId = socket.id;
 });
@@ -15,15 +15,19 @@ const usersContainer = document.querySelector(".users-container");
 
 function createUserElement(item) {
   const element = document.createElement("div");
-  element.innerHTML = `<div>${new Date(item.joinedAt).toLocaleString()}</div>
-    <button data-id=${mySocketId} ${(onclick = function () {
+  const button = document.createElement("button");
+  button.textContent = "Call";
+  button.style.width = "fit-content";
+  button.onclick = () => {
     callUser(item.socketId);
-  })} >Call</button>`;
+  };
+  element.innerHTML = `<div>${new Date(item.joinedAt).toLocaleString()}</div>`;
   usersContainer.appendChild(element);
+  usersContainer.appendChild(button);
 }
 
 function callUser(peerId) {
-  console.log("Call user clicled", peerId);
+  console.log("Call user with Id:", peerId);
   const call = peer.call(peerId, myStream);
   call.on("stream", (remoteStream) => {
     remoteVideo.srcObject = remoteStream;
@@ -31,7 +35,7 @@ function callUser(peerId) {
 }
 
 socket.on("new-user", (usersList) => {
-  console.log("new User Joined", usersList);
+  console.log("New User Joined the server all users:", usersList);
   usersList.forEach((item) => {
     if (item.socketId !== mySocketId) {
       usersContainer.innerHTML = "";
@@ -41,7 +45,7 @@ socket.on("new-user", (usersList) => {
 });
 
 socket.on("users", (usersList) => {
-  console.log("Initial Users List", usersList);
+  console.log("Get Initial User on first load, users list:", usersList);
   usersList.forEach((item) => {
     if (item.socketId !== mySocketId) {
       createUserElement(item);
@@ -60,7 +64,7 @@ navigator.mediaDevices
 
     // Answer incoming calls
     peer.on("call", (call) => {
-      console.log("CALL COMING---", call);
+      console.log("Someone is calling you", call);
       call.answer(stream);
       call.on("stream", (remoteStream) => {
         remoteVideo.srcObject = remoteStream;
