@@ -53,10 +53,10 @@ const myVideo = document.getElementById("myVideo");
 const remoteVideo = document.getElementById("remoteVideo");
 
 navigator.mediaDevices
-  .getUserMedia({ video: false, audio: true })
+  .getUserMedia({ video: true, audio: true })
   .then((stream) => {
     myStream = stream;
-    // myVideo.srcObject = stream;
+    myVideo.srcObject = stream;
 
     // Answer incoming calls
     peer.on("call", (call) => {

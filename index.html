@@ -13,12 +13,16 @@
 
     <div id="messages"></div>
 
-    <input id="peerIdInput" type="text" placeholder="Enter Peer ID to call" />
-    <button id="callBtn">Call</button>
-
     <div>
-      <!-- <audio id="myVideo" autoplay playsinline></audio> -->
-      <audio id="remoteVideo" autoplay playsinline></audio>
+      <div>
+        <h6>Me</h6>
+        <video id="myVideo" autoplay playsinline></video>
+      </div>
+
+      <div>
+        <h6>Other users</h6>
+        <video id="remoteVideo" autoplay playsinline></video>
+      </div>
     </div>
 
     <script>
