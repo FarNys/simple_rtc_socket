@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Socket.IO Client</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+  </head>
+  <body>
+    <h1>Socket.IO Client</h1>
+    <div class="users-container"></div>
+
+    <div id="messages"></div>
+
+    <input id="peerIdInput" type="text" placeholder="Enter Peer ID to call" />
+    <button id="callBtn">Call</button>
+
+    <div>
+      <!-- <audio id="myVideo" autoplay playsinline></audio> -->
+      <audio id="remoteVideo" autoplay playsinline></audio>
+    </div>
+
+    <script>
+      // Connect to your server (adjust URL/port if needed)
+    </script>
+    <script src="script.js" />
+  </body>
+</html>

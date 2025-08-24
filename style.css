@@ -1,0 +1,11 @@
+.users-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+myVideo {
+  width: 400;
+  height: 400;
+  border: 2px solid red;
+}
